@@ -9,11 +9,12 @@ const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeveQ8I
 
 // Mapping of step index to the exact Google Form entry ID
 const FORM_ENTRIES = {
-  1: "entry.606382618", // Q1: Biggest frustration
-  2: "entry.545797915", // Q2: Tailoring handling
-  3: "entry.395819988", // Q3: Try the website
-  4: "entry.361439997", // Q4: Custom COD
-  5: "entry.434998424"  // Q5: Beta User WhatsApp
+  1: "entry.1747144279", // Q1: Name
+  2: "entry.606382618", // Q2: Biggest frustration
+  3: "entry.545797915", // Q3: Tailoring handling
+  4: "entry.395819988", // Q4: Try the website
+  5: "entry.361439997", // Q5: Custom COD
+  6: "entry.434998424"  // Q6: Beta User WhatsApp
 };
 
 const QUESTIONS = [
@@ -22,6 +23,12 @@ const QUESTIONS = [
     title: 'Welcome to Noolu',
     subtitle: 'We are building a custom-fit clothing experience just for you. Help us understand your needs better.',
     buttonText: 'Start Survey',
+  },
+  {
+    type: 'text',
+    title: 'First, what is your name?',
+    malayalam: 'നിങ്ങളുടെ പേരെന്താണ്?',
+    placeholder: 'Enter your name'
   },
   {
     type: 'choice',
@@ -76,7 +83,6 @@ const QUESTIONS = [
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [textInput, setTextInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -91,7 +97,10 @@ function App() {
       }
       if (e.key === 'Enter') {
         if (q.type === 'intro') nextStep();
-        if (q.type === 'text' && textInput) submitForm();
+        if (q.type === 'text' && answers[currentStep]) {
+          if (currentStep === QUESTIONS.length - 1) submitForm();
+          else nextStep();
+        }
       }
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -104,7 +113,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep, textInput]);
+  }, [currentStep, answers]);
 
   const handleOptionSelect = (value) => {
     setAnswers({ ...answers, [currentStep]: value });
@@ -125,13 +134,12 @@ function App() {
 
   const submitForm = async () => {
     setIsSubmitting(true);
-    const finalAnswers = { ...answers, [currentStep]: textInput };
     
     // Build FormData for Google Forms
     const formData = new FormData();
     Object.keys(FORM_ENTRIES).forEach(stepIndex => {
-      if (finalAnswers[stepIndex]) {
-        formData.append(FORM_ENTRIES[stepIndex], finalAnswers[stepIndex]);
+      if (answers[stepIndex]) {
+        formData.append(FORM_ENTRIES[stepIndex], answers[stepIndex]);
       }
     });
 
@@ -238,16 +246,17 @@ function App() {
                   type="text"
                   className="text-input"
                   placeholder={q.placeholder}
-                  value={textInput}
-                  onChange={(e) => setTextInput(e.target.value)}
+                  value={answers[currentStep] || ''}
+                  onChange={(e) => setAnswers({ ...answers, [currentStep]: e.target.value })}
                   autoFocus
                 />
                 <button
                   className="primary-button"
-                  onClick={submitForm}
-                  disabled={!textInput.trim() || isSubmitting}
+                  onClick={() => currentStep === QUESTIONS.length - 1 ? submitForm() : nextStep()}
+                  disabled={!answers[currentStep] || isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'} <Check size={20} />
+                  {currentStep === QUESTIONS.length - 1 ? (isSubmitting ? 'Submitting...' : 'Next') : 'Next'} 
+                  {currentStep === QUESTIONS.length - 1 ? <Check size={20} /> : <ArrowRight size={20} />}
                 </button>
               </div>
             )}

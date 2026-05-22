@@ -28,10 +28,10 @@ const QUESTIONS = [
     title: 'What is your biggest frustration with buying clothes online?',
     malayalam: 'ഓൺലൈനായി വസ്ത്രങ്ങൾ വാങ്ങുമ്പോൾ നിങ്ങൾ നേരിടുന്ന പ്രധാന പ്രശ്നം എന്താണ്?',
     options: [
-      { id: 'A', value: 'Option 1', text: 'Size/Fitting issues', malayalam: 'സൈസ്/ഫിറ്റിംഗ് ശരിയല്ല' },
-      { id: 'B', value: 'Option 2', text: 'Low fabric quality', malayalam: 'തുണിയുടെ ഗുണമേന്മ കുറവ്' },
-      { id: 'C', value: 'Option 3', text: "Designs don't match the photos", malayalam: 'ഡിസൈൻ ഫോട്ടോയിലേതുപോലെ അല്ല' },
-      { id: 'D', value: 'Option 4', text: 'Delivery takes too long', malayalam: 'ഡെലിവറി വൈകുന്നു' }
+      { id: 'A', value: "Size/Fitting issues'", text: 'Size/Fitting issues', malayalam: 'സൈസ്/ഫിറ്റിംഗ് ശരിയല്ല' },
+      { id: 'B', value: 'Low fabric quality', text: 'Low fabric quality', malayalam: 'തുണിയുടെ ഗുണമേന്മ കുറവ്' },
+      { id: 'C', value: "Designs don't match the photos", text: "Designs don't match the photos", malayalam: 'ഡിസൈൻ ഫോട്ടോയിലേതുപോലെ അല്ല' },
+      { id: 'D', value: 'Delivery takes too long', text: 'Delivery takes too long', malayalam: 'ഡെലിവറി വൈകുന്നു' }
     ]
   },
   {
@@ -39,10 +39,10 @@ const QUESTIONS = [
     title: 'How do you usually handle tailoring?',
     malayalam: 'നിങ്ങൾ സാധാരണയായി വസ്ത്രങ്ങൾ തയ്പ്പിക്കുന്നത് എങ്ങനെയാണ്?',
     options: [
-      { id: 'A', value: 'Option 1', text: 'I visit a local tailor', malayalam: 'അടുത്തുള്ള ടെയ്‌ലറെ പോയി കാണുന്നു' },
-      { id: 'B', value: 'Option 2', text: 'I buy readymade and alter them', malayalam: 'റെഡിമെയ്ഡ് വാങ്ങി പിന്നീട് ആൾട്ടർ ചെയ്യുന്നു' },
-      { id: 'C', value: 'Option 3', text: 'I buy from online and hope they fit', malayalam: 'ഞാൻ ഓൺലൈനിൽ നിന്ന് വാങ്ങാറാണ് പതിവ്' },
-      { id: 'D', value: 'Option 4', text: "I don't tailor clothes often", malayalam: 'സാധാരണയായി തയ്പ്പിക്കാറില്ല' }
+      { id: 'A', value: 'I visit a local tailor', text: 'I visit a local tailor', malayalam: 'അടുത്തുള്ള ടെയ്‌ലറെ പോയി കാണുന്നു' },
+      { id: 'B', value: 'I buy readymade and alter them', text: 'I buy readymade and alter them', malayalam: 'റെഡിമെയ്ഡ് വാങ്ങി പിന്നീട് ആൾട്ടർ ചെയ്യുന്നു' },
+      { id: 'C', value: 'I buy from online and hope they fit', text: 'I buy from online and hope they fit', malayalam: 'ഞാൻ ഓൺലൈനിൽ നിന്ന് വാങ്ങാറാണ് പതിവ്' },
+      { id: 'D', value: "I don't tailor clothes often", text: "I don't tailor clothes often", malayalam: 'സാധാരണയായി തയ്പ്പിക്കാറില്ല' }
     ]
   },
   {
@@ -50,9 +50,9 @@ const QUESTIONS = [
     title: 'If you could design your own neckline and sleeves on a website and give measurements via a simple video guide, would you try it?',
     malayalam: 'ഒരു വെബ്സൈറ്റ് വഴി നിങ്ങൾക്ക് ഇഷ്ടമുള്ള നെക്ക് ഡിസൈനും കൈകളും തിരഞ്ഞെടുക്കാനും വീഡിയോ കണ്ട് അളവുകൾ നൽകാനും സാധിച്ചാൽ നിങ്ങൾ അത് പരീക്ഷിക്കുമോ?',
     options: [
-      { id: 'A', value: 'Option 1', text: 'Yes, definitely!', malayalam: 'തീർച്ചയായും!' },
-      { id: 'B', value: 'Option 2', text: 'Maybe, depends on the price', malayalam: 'വില നോക്കി തീരുമാനിക്കും' },
-      { id: 'C', value: 'Option 3', text: 'No, I prefer visiting a tailor in person', malayalam: 'നേരിട്ട് പോകുന്നതാണ് താല്പര്യം' }
+      { id: 'A', value: 'Yes, definitely!', text: 'Yes, definitely!', malayalam: 'തീർച്ചയായും!' },
+      { id: 'B', value: 'Maybe, depends on the price', text: 'Maybe, depends on the price', malayalam: 'വില നോക്കി തീരുമാനിക്കും' },
+      { id: 'C', value: 'No, I prefer visiting a tailor in person', text: 'No, I prefer visiting a tailor in person', malayalam: 'നേരിട്ട് പോകുന്നതാണ് താല്പര്യം' }
     ]
   },
   {
@@ -60,9 +60,9 @@ const QUESTIONS = [
     title: 'For a custom-made garment, would you be comfortable paying a small advance and the rest via COD?',
     malayalam: 'നിങ്ങൾക്കായി മാത്രം തയ്ക്കുന്ന വസ്ത്രമായതിനാൽ, കുറച്ചു തുക മുൻകൂറായും ബാക്കി സാധനം കിട്ടുമ്പോൾ COD ആയും നൽകാൻ നിങ്ങൾക്ക് സമ്മതമാണോ?',
     options: [
-      { id: 'A', value: 'Option 1', text: 'Yes, that sounds fair', malayalam: 'അതെ, അത് ശരിയാണ്' },
-      { id: 'B', value: 'Option 2', text: 'I prefer 100% COD', malayalam: 'മുഴുവൻ തുകയും സാധനം കിട്ടുമ്പോൾ നൽകാനാണ് താല്പര്യം' },
-      { id: 'C', value: 'Option 3', text: 'I prefer 100% Pre-payment', malayalam: 'മുഴുവൻ തുകയും മുൻകൂറായി നൽകാം' }
+      { id: 'A', value: 'Yes, that sounds fair', text: 'Yes, that sounds fair', malayalam: 'അതെ, അത് ശരിയാണ്' },
+      { id: 'B', value: 'I prefer 100% COD', text: 'I prefer 100% COD', malayalam: 'മുഴുവൻ തുകയും സാധനം കിട്ടുമ്പോൾ നൽകാനാണ് താല്പര്യം' },
+      { id: 'C', value: 'I prefer 100% Pre-payment', text: 'I prefer 100% Pre-payment', malayalam: 'മുഴുവൻ തുകയും മുൻകൂറായി നൽകാം' }
     ]
   },
   {

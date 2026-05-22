@@ -254,3 +254,11 @@ body {
 .nav-arrow:first-child {
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.progress-fraction {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.8;
+  letter-spacing: 1px;
+}

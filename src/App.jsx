@@ -263,6 +263,11 @@ function App() {
 
       {!isSubmitted && (
         <div className="bottom-nav">
+          {currentStep > 0 && (
+            <div className="progress-fraction">
+              {currentStep} / {QUESTIONS.length - 1}
+            </div>
+          )}
           <div className="nav-arrows">
             <button className="nav-arrow" onClick={prevStep} disabled={currentStep === 0} aria-label="Previous question">
               <ChevronUp size={24} />

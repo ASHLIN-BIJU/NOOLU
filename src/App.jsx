@@ -5,15 +5,15 @@ import './index.css';
 
 // === GOOGLE FORMS CONFIGURATION ===
 // Replace this with the Action URL from your Google Form
-const GOOGLE_FORM_ACTION_URL = "YOUR_GOOGLE_FORM_ACTION_URL_HERE";
+const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeveQ8I8G4Gija5LZu6S5Z7pLmcGoC3caSnE-DdhIX713qnMA/formResponse";
 
 // Mapping of step index to the exact Google Form entry ID
 const FORM_ENTRIES = {
-  1: "entry.1234567890", // Q1: Biggest frustration
-  2: "entry.1234567891", // Q2: Tailoring handling
-  3: "entry.1234567892", // Q3: Try the website
-  4: "entry.1234567893", // Q4: Custom COD
-  5: "entry.1234567894"  // Q5: Beta User WhatsApp
+  1: "entry.606382618", // Q1: Biggest frustration
+  2: "entry.545797915", // Q2: Tailoring handling
+  3: "entry.395819988", // Q3: Try the website
+  4: "entry.361439997", // Q4: Custom COD
+  5: "entry.434998424"  // Q5: Beta User WhatsApp
 };
 
 const QUESTIONS = [
@@ -28,10 +28,10 @@ const QUESTIONS = [
     title: 'What is your biggest frustration with buying clothes online?',
     malayalam: 'ഓൺലൈനായി വസ്ത്രങ്ങൾ വാങ്ങുമ്പോൾ നിങ്ങൾ നേരിടുന്ന പ്രധാന പ്രശ്നം എന്താണ്?',
     options: [
-      { id: 'A', text: 'Size/Fitting issues', malayalam: 'സൈസ്/ഫിറ്റിംഗ് ശരിയല്ല' },
-      { id: 'B', text: 'Low fabric quality', malayalam: 'തുണിയുടെ ഗുണമേന്മ കുറവ്' },
-      { id: 'C', text: "Designs don't match the photos", malayalam: 'ഡിസൈൻ ഫോട്ടോയിലേതുപോലെ അല്ല' },
-      { id: 'D', text: 'Delivery takes too long', malayalam: 'ഡെലിവറി വൈകുന്നു' }
+      { id: 'A', value: 'Option 1', text: 'Size/Fitting issues', malayalam: 'സൈസ്/ഫിറ്റിംഗ് ശരിയല്ല' },
+      { id: 'B', value: 'Option 2', text: 'Low fabric quality', malayalam: 'തുണിയുടെ ഗുണമേന്മ കുറവ്' },
+      { id: 'C', value: 'Option 3', text: "Designs don't match the photos", malayalam: 'ഡിസൈൻ ഫോട്ടോയിലേതുപോലെ അല്ല' },
+      { id: 'D', value: 'Option 4', text: 'Delivery takes too long', malayalam: 'ഡെലിവറി വൈകുന്നു' }
     ]
   },
   {
@@ -39,10 +39,10 @@ const QUESTIONS = [
     title: 'How do you usually handle tailoring?',
     malayalam: 'നിങ്ങൾ സാധാരണയായി വസ്ത്രങ്ങൾ തയ്പ്പിക്കുന്നത് എങ്ങനെയാണ്?',
     options: [
-      { id: 'A', text: 'I visit a local tailor', malayalam: 'അടുത്തുള്ള ടെയ്‌ലറെ പോയി കാണുന്നു' },
-      { id: 'B', text: 'I buy readymade and alter them', malayalam: 'റെഡിമെയ്ഡ് വാങ്ങി പിന്നീട് ആൾട്ടർ ചെയ്യുന്നു' },
-      { id: 'C', text: 'I buy from online and hope they fit', malayalam: 'ഞാൻ ഓൺലൈനിൽ നിന്ന് വാങ്ങാറാണ് പതിവ്' },
-      { id: 'D', text: "I don't tailor clothes often", malayalam: 'സാധാരണയായി തയ്പ്പിക്കാറില്ല' }
+      { id: 'A', value: 'Option 1', text: 'I visit a local tailor', malayalam: 'അടുത്തുള്ള ടെയ്‌ലറെ പോയി കാണുന്നു' },
+      { id: 'B', value: 'Option 2', text: 'I buy readymade and alter them', malayalam: 'റെഡിമെയ്ഡ് വാങ്ങി പിന്നീട് ആൾട്ടർ ചെയ്യുന്നു' },
+      { id: 'C', value: 'Option 3', text: 'I buy from online and hope they fit', malayalam: 'ഞാൻ ഓൺലൈനിൽ നിന്ന് വാങ്ങാറാണ് പതിവ്' },
+      { id: 'D', value: 'Option 4', text: "I don't tailor clothes often", malayalam: 'സാധാരണയായി തയ്പ്പിക്കാറില്ല' }
     ]
   },
   {
@@ -50,9 +50,9 @@ const QUESTIONS = [
     title: 'If you could design your own neckline and sleeves on a website and give measurements via a simple video guide, would you try it?',
     malayalam: 'ഒരു വെബ്സൈറ്റ് വഴി നിങ്ങൾക്ക് ഇഷ്ടമുള്ള നെക്ക് ഡിസൈനും കൈകളും തിരഞ്ഞെടുക്കാനും വീഡിയോ കണ്ട് അളവുകൾ നൽകാനും സാധിച്ചാൽ നിങ്ങൾ അത് പരീക്ഷിക്കുമോ?',
     options: [
-      { id: 'A', text: 'Yes, definitely!', malayalam: 'തീർച്ചയായും!' },
-      { id: 'B', text: 'Maybe, depends on the price', malayalam: 'വില നോക്കി തീരുമാനിക്കും' },
-      { id: 'C', text: 'No, I prefer visiting a tailor in person', malayalam: 'നേരിട്ട് പോകുന്നതാണ് താല്പര്യം' }
+      { id: 'A', value: 'Option 1', text: 'Yes, definitely!', malayalam: 'തീർച്ചയായും!' },
+      { id: 'B', value: 'Option 2', text: 'Maybe, depends on the price', malayalam: 'വില നോക്കി തീരുമാനിക്കും' },
+      { id: 'C', value: 'Option 3', text: 'No, I prefer visiting a tailor in person', malayalam: 'നേരിട്ട് പോകുന്നതാണ് താല്പര്യം' }
     ]
   },
   {
@@ -60,9 +60,9 @@ const QUESTIONS = [
     title: 'For a custom-made garment, would you be comfortable paying a small advance and the rest via COD?',
     malayalam: 'നിങ്ങൾക്കായി മാത്രം തയ്ക്കുന്ന വസ്ത്രമായതിനാൽ, കുറച്ചു തുക മുൻകൂറായും ബാക്കി സാധനം കിട്ടുമ്പോൾ COD ആയും നൽകാൻ നിങ്ങൾക്ക് സമ്മതമാണോ?',
     options: [
-      { id: 'A', text: 'Yes, that sounds fair', malayalam: 'അതെ, അത് ശരിയാണ്' },
-      { id: 'B', text: 'I prefer 100% COD', malayalam: 'മുഴുവൻ തുകയും സാധനം കിട്ടുമ്പോൾ നൽകാനാണ് താല്പര്യം' },
-      { id: 'C', text: 'I prefer 100% Pre-payment', malayalam: 'മുഴുവൻ തുകയും മുൻകൂറായി നൽകാം' }
+      { id: 'A', value: 'Option 1', text: 'Yes, that sounds fair', malayalam: 'അതെ, അത് ശരിയാണ്' },
+      { id: 'B', value: 'Option 2', text: 'I prefer 100% COD', malayalam: 'മുഴുവൻ തുകയും സാധനം കിട്ടുമ്പോൾ നൽകാനാണ് താല്പര്യം' },
+      { id: 'C', value: 'Option 3', text: 'I prefer 100% Pre-payment', malayalam: 'മുഴുവൻ തുകയും മുൻകൂറായി നൽകാം' }
     ]
   },
   {
@@ -86,7 +86,7 @@ function App() {
       if (q.type === 'choice') {
         const index = e.key.toLowerCase().charCodeAt(0) - 97; // a=0, b=1, etc.
         if (index >= 0 && index < q.options.length) {
-          handleOptionSelect(q.options[index].text);
+          handleOptionSelect(q.options[index].value);
         }
       }
       if (e.key === 'Enter') {
@@ -198,13 +198,13 @@ function App() {
             {q.type === 'choice' && (
               <div className="options-container">
                 {q.options.map((opt, i) => {
-                  const isSelected = answers[currentStep] === opt.text;
+                  const isSelected = answers[currentStep] === opt.value;
                   const keyChar = String.fromCharCode(65 + i); // A, B, C, D
                   return (
                     <button
                       key={i}
                       className={`option-button ${isSelected ? 'selected' : ''}`}
-                      onClick={() => handleOptionSelect(opt.text)}
+                      onClick={() => handleOptionSelect(opt.value)}
                     >
                       <span className="key-hint">{keyChar}</span>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>

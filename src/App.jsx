@@ -147,6 +147,9 @@ function App() {
       }
     });
 
+    // Hidden bypass for the required phone number field that was removed from the UI
+    formData.append("entry.434998424", "Not Provided");
+
     try {
       if (GOOGLE_FORM_ACTION_URL !== "YOUR_GOOGLE_FORM_ACTION_URL_HERE") {
         await fetch(GOOGLE_FORM_ACTION_URL, {

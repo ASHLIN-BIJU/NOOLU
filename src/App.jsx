@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check, CheckCircle2, ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import './index.css';
 
 // === GOOGLE FORMS CONFIGURATION ===
@@ -93,11 +93,11 @@ function App() {
         if (q.type === 'intro') nextStep();
         if (q.type === 'text' && textInput) submitForm();
       }
-      if (e.key === 'ArrowUp') {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
         prevStep();
       }
-      if (e.key === 'ArrowDown') {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault();
         nextStep();
       }
@@ -270,10 +270,10 @@ function App() {
           )}
           <div className="nav-arrows">
             <button className="nav-arrow" onClick={prevStep} disabled={currentStep === 0} aria-label="Previous question">
-              <ChevronUp size={24} />
+              <ChevronLeft size={24} />
             </button>
             <button className="nav-arrow" onClick={nextStep} disabled={currentStep === QUESTIONS.length - 1} aria-label="Next question">
-              <ChevronDown size={24} />
+              <ChevronRight size={24} />
             </button>
           </div>
         </div>

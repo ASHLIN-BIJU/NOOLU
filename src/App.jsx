@@ -91,7 +91,11 @@ function App() {
       }
       if (e.key === 'Enter') {
         if (q.type === 'intro') nextStep();
-        if (q.type === 'text' && (answers[currentStep] || q.optional)) {
+        else if (q.type === 'text' && (answers[currentStep] || q.optional)) {
+          if (currentStep === QUESTIONS.length - 1) submitForm();
+          else nextStep();
+        }
+        else if (q.type === 'choice' && answers[currentStep]) {
           if (currentStep === QUESTIONS.length - 1) submitForm();
           else nextStep();
         }
@@ -111,7 +115,13 @@ function App() {
 
   const handleOptionSelect = (value) => {
     setAnswers({ ...answers, [currentStep]: value });
-    setTimeout(nextStep, 400); // Small delay for UX
+    setTimeout(() => {
+      if (currentStep === QUESTIONS.length - 1) {
+        submitForm();
+      } else {
+        nextStep();
+      }
+    }, 400); // Small delay for UX
   };
 
   const nextStep = () => {
@@ -212,25 +222,37 @@ function App() {
             )}
 
             {q.type === 'choice' && (
-              <div className="options-container">
-                {q.options.map((opt, i) => {
-                  const isSelected = answers[currentStep] === opt.value;
-                  const keyChar = String.fromCharCode(65 + i); // A, B, C, D
-                  return (
-                    <button
-                      key={i}
-                      className={`option-button ${isSelected ? 'selected' : ''}`}
-                      onClick={() => handleOptionSelect(opt.value)}
-                    >
-                      <span className="key-hint">{keyChar}</span>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                        <span>{opt.text}</span>
-                        {opt.malayalam && <span style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '2px' }}>{opt.malayalam}</span>}
-                      </div>
-                      {isSelected && <Check size={20} style={{ marginLeft: 'auto' }} />}
-                    </button>
-                  );
-                })}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div className="options-container">
+                  {q.options.map((opt, i) => {
+                    const isSelected = answers[currentStep] === opt.value;
+                    const keyChar = String.fromCharCode(65 + i); // A, B, C, D
+                    return (
+                      <button
+                        key={i}
+                        className={`option-button ${isSelected ? 'selected' : ''}`}
+                        onClick={() => handleOptionSelect(opt.value)}
+                      >
+                        <span className="key-hint">{keyChar}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                          <span>{opt.text}</span>
+                          {opt.malayalam && <span style={{ fontSize: '0.9rem', opacity: 0.7, marginTop: '2px' }}>{opt.malayalam}</span>}
+                        </div>
+                        {isSelected && <Check size={20} style={{ marginLeft: 'auto' }} />}
+                      </button>
+                    );
+                  })}
+                </div>
+                {currentStep === QUESTIONS.length - 1 && (
+                  <button
+                    className="primary-button"
+                    onClick={submitForm}
+                    disabled={!answers[currentStep] || isSubmitting}
+                    style={{ alignSelf: 'flex-start' }}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit'} <Check size={20} />
+                  </button>
+                )}
               </div>
             )}
 

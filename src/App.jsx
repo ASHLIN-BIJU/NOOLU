@@ -9,12 +9,11 @@ const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeveQ8I
 
 // Mapping of step index to the exact Google Form entry ID
 const FORM_ENTRIES = {
-  1: "entry.1747144279", // Q1: Name
+  1: "entry.1747144279", // Q1: Email (previously Name)
   2: "entry.606382618", // Q2: Biggest frustration
   3: "entry.545797915", // Q3: Tailoring handling
   4: "entry.395819988", // Q4: Try the website
-  5: "entry.361439997", // Q5: Custom COD
-  6: "entry.434998424"  // Q6: Beta User WhatsApp
+  5: "entry.361439997"  // Q5: Custom COD
 };
 
 const QUESTIONS = [
@@ -26,9 +25,10 @@ const QUESTIONS = [
   },
   {
     type: 'text',
-    title: 'First, what is your name?',
-    malayalam: 'നിങ്ങളുടെ പേരെന്താണ്?',
-    placeholder: 'Enter your name'
+    title: 'First, what is your email ID?',
+    malayalam: 'നിങ്ങളുടെ ഇമെയിൽ വിലാസം എന്താണ്?',
+    placeholder: 'Enter your email ID (Optional)',
+    optional: true
   },
   {
     type: 'choice',
@@ -71,12 +71,6 @@ const QUESTIONS = [
       { id: 'B', value: 'I prefer 100% COD', text: 'I prefer 100% COD', malayalam: 'മുഴുവൻ തുകയും സാധനം കിട്ടുമ്പോൾ നൽകാനാണ് താല്പര്യം' },
       { id: 'C', value: 'I prefer 100% Pre-payment', text: 'I prefer 100% Pre-payment', malayalam: 'മുഴുവൻ തുകയും മുൻകൂറായി നൽകാം' }
     ]
-  },
-  {
-    type: 'text',
-    title: 'Would you like to be a "Beta User" and get 20% off your first order?',
-    malayalam: 'ഞങ്ങളുടെ ആദ്യത്തെ ഉപഭോക്താവാകാനും 20% ഡിസ്കൗണ്ട് നേടാനും നിങ്ങൾക്ക് താല്പര്യമുണ്ടോ? ഉണ്ടെങ്കിൽ വാട്സാപ്പ് നമ്പർ നൽകുക',
-    placeholder: 'Enter your WhatsApp number'
   }
 ];
 
@@ -97,7 +91,7 @@ function App() {
       }
       if (e.key === 'Enter') {
         if (q.type === 'intro') nextStep();
-        if (q.type === 'text' && answers[currentStep]) {
+        if (q.type === 'text' && (answers[currentStep] || q.optional)) {
           if (currentStep === QUESTIONS.length - 1) submitForm();
           else nextStep();
         }
@@ -253,7 +247,7 @@ function App() {
                 <button
                   className="primary-button"
                   onClick={() => currentStep === QUESTIONS.length - 1 ? submitForm() : nextStep()}
-                  disabled={!answers[currentStep] || isSubmitting}
+                  disabled={(!q.optional && !answers[currentStep]) || isSubmitting}
                 >
                   {currentStep === QUESTIONS.length - 1 ? (isSubmitting ? 'Submitting...' : 'Next') : 'Next'} 
                   {currentStep === QUESTIONS.length - 1 ? <Check size={20} /> : <ArrowRight size={20} />}

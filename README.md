@@ -1,16 +1,41 @@
-# React + Vite
+# NOOLU Survey Experience
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A polished, bilingual customer-discovery survey for a custom-fit clothing concept. The interface turns a standard form into a focused, step-by-step experience with smooth motion and keyboard-friendly navigation.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Animated question transitions and progress feedback
+- English and Malayalam survey content
+- Keyboard controls for fast navigation and selection
+- Responsive layout for desktop and mobile
+- Direct Google Forms submission
+- Clear loading, completion, and validation states
 
-## React Compiler
+## Built with
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`React 19` · `Vite 8` · `Framer Motion` · `Lucide React` · `CSS`
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Production checks:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Project structure
+
+```text
+src/App.jsx    Survey flow, state, keyboard controls, and submission
+src/index.css  Responsive visual system and interaction styles
+```
+
+---
+
+Built as a focused product-validation experience rather than a generic form.
